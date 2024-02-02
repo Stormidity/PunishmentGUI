@@ -157,4 +157,11 @@ public class ConfigItem {
         return item.toItemStack();
        }
     }
+
+    public String getName() {
+        if (name == null) {
+            return "";
+        }
+        return name;
+    }
 }

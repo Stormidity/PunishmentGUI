@@ -44,9 +44,9 @@ public class CustomMenu {
                         List<String> lore_new = new ArrayList<>();
                         String name = configItem.getName();
 
-                        configItem.setName(String.valueOf(plugin.getCoreHandler().translate(player, configItem.getName()
+                        configItem.setName(String.valueOf(plugin.getCoreHandler().translate(player, configItem.getName())
                                 .replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))
-                                .replace("{player}", plugin.getBannedManager().get(player.getUniqueId())))));
+                                .replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))));
                         for (String s : lore) {
                             lore_new.add(plugin.getCoreHandler().translate(player, s.replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))
                                     .replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))));
