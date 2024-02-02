@@ -1,0 +1,374 @@
+#Which menu should /punish <player> open?
+Command: "{openmenu:main-menu}"
+#Should the console run the punishment command?
+ConsoleRunsCommands: false
+#Toggle update checks
+CheckForUpdates: true
+#Menus
+menus:
+  #main-menu is the default menu, to create more just copy and paste the same format.
+  main-menu:
+    #You're using this name to access to this menu from anywhere in the configuration where you have action option
+    #Just use for action {openmenu:menu-name}
+    name: "main-menu"
+    menu-title: "&c&lPunishmentGUI"
+    menu-size: 54
+    fill-menu:
+      enabled: true
+      item:
+        name: " "
+        material: "STAINED_GLASS_PANE"
+        amount: 1
+        durability: 0
+        lore: []
+    items:
+      ClientModOffensesItem:
+        name: "&a&lClient Mod Offenses"
+        material: "DIAMOND_SWORD"
+        amount: 1
+        durability: 0
+        slot: 14
+        message:
+          enabled: false
+          text: "&eHello &b{player}!"
+        command:
+          enabled: false
+          #Put command without /
+          execute:
+            - ""
+        action: ""
+        lore:
+          - ""
+          - '&7X-Ray, Forcefield, Speed, Fly, Reach, etc'
+          - ""
+      GeneralOffensesItem:
+        name: "&a&lGeneral Offenses"
+        material: "MINECART"
+        amount: 1
+        durability: 0
+        slot: 12
+        message:
+          enabled: false
+          text: "&eHello &b{player}!"
+        command:
+          enabled: false
+          #Put command without /
+          execute:
+            - ""
+        action: ""
+        lore:
+          - ""
+          - '&7Command/Map/Class/Skill Exploits, etc'
+          - ""
+      ChatOffensesItem:
+        name: "&a&lChat Offenses"
+        material: "BOOK_AND_QUILL"
+        amount: 1
+        durability: 0
+        slot: 10
+        message:
+          enabled: false
+          text: "&eHello &b{player}!"
+        command:
+          enabled: false
+          #Put command without /
+          execute:
+            - ""
+        action: ""
+        lore:
+          - ""
+          - '&7Verbal Abuse, Spam, Harassment, Trolling, etc'
+          - ""
+      WarningItem:
+        name: "&a&lWarnings"
+        material: "ANVIL"
+        amount: 1
+        durability: 0
+        slot: 43
+        message:
+          enabled: false
+          text: "&eHello &b{player}!"
+        command:
+          enabled: true
+          #Put command without /
+          execute:
+            - "warn {player} Spam/Hack Accusation/Trolling -s"
+        action: ""
+        lore:
+          - ' '
+          - '&7Example Warning Input:'
+          - '&fSpam - Repeatedly writing MEOW'
+          - '&fHack Accusation - Accused Tomp13 of hacking'
+          - '&fTrolling - was trying to make bob angry in chat '
+          - ' '
+      PermanentMuteItem:
+        name: "&a&lPermanent Mute"
+        material: "PAPER"
+        amount: 1
+        durability: 0
+        slot: 25
+        message:
+          enabled: false
+          text: "&eHello &b{player}!"
+        command:
+          enabled: true
+          #Put command without /
+          execute:
+            - "mute {player} Server Advertising/Other Severe Offense -s"
+        action: ""
+        lore:
+          - '&fMute Duration: &ePermanent'
+          - ' '
+          - '&7Severe Advertising'
+          - '&fJOIN MINEMEN HERE NOW: eu.minemen.club'
+          - ' '
+          - '&7Other Severe Offense'
+          - '&fDDOS Threats/Dox Threats ETC'
+          - ' '
+      LightOffenceMuteItem:
+        name: "&a&lLight Offences"
+        material: "INK_SACK"
+        amount: 1
+        durability: 0
+        slot: 19
+        message:
+          enabled: false
+          text: "&eHello &b{player}!"
+        command:
+          enabled: true
+          #Put command without /
+          execute:
+            - "mute {player} 1d Light Spam/Light Advertising/Swearing/Foreign language -s"
+        action: ""
+        lore:
+          - '&fMute Duration: &e1 Hour'
+          - ' '
+          - '&7Light Spam'
+          - '&fSending the same message 3-5 times'
+          - ' '
+          - '&7Light Advertising'
+          - '&fanyone want to play on minemen?'
+          - ' '
+          - '&Swearing'
+          - '&fAlparo is so fucking bad at this game'
+          - ' '
+          - '&7Foreign language'
+          - '&fAlparo Pusi mi kurac majmune.'
+          - ' '
+      MediumOffenceMuteItem:
+        name: "&a&lMedium Offences"
+        material: "FEATHER"
+        amount: 1
+        durability: 0
+        slot: 28
+        message:
+          enabled: false
+          text: "&eHello &b{player}!"
+        command:
+          enabled: true
+          #Put command without /
+          execute:
+            - "mute {player} 1w Medium Spam/Discrimination/Extreme Toxicity/Pedophilia"
+        action: ""
+        lore:
+          - '&fMute Duration: &e1 Week'
+          - ' '
+          - '&7Medium Spam'
+          - '&fSending the same message 6-20 times'
+          - ' '
+          - '&7Discrimination'
+          - '&fI hate niggers!'
+          - ' '
+          - '&7Extreme Toxicity'
+          - '&fI hope you get cancer and aids monkey'
+          - '&fDead parents AHAHAHAHHA!'
+          - ' '
+          - '&7Pedophilia'
+          - '&f8 yo kids make me so wet (cant believe I put this here)'
+          - ' '
+      MajorOffenceItem:
+        name: "&a&lMajorOffences"
+        material: "RED_DYE"
+        amount: 1
+        durability: 0
+        slot: 37
+        message:
+          enabled: false
+          text: "&eHello &b{player}!"
+        command:
+          enabled: true
+          #Put command without /
+          execute:
+            - "mute {player} 1m Severe Spam/Death wishes -s"
+        action: ""
+        lore:
+          - '&fMute Duration: &e1 Month'
+          - ' '
+          - '&7Severe Spam'
+          - '&fSending the same message 20+ times'
+          - '&fSpam Bot'
+          - ' '
+          - '&7Death wishes'
+          - '&fGO KYS'
+          - ' '
+      PermanentBanItem:
+        name: "&a&lPermanent Ban"
+        material: "REDSTONE_BLOCK"
+        amount: 1
+        durability: 0
+        slot: 34
+        message:
+          enabled: false
+          text: "&eHello &b{player}!"
+        command:
+          enabled: true
+          #Put command without /
+          execute:
+            - "ban {player} Severe Exploitations/Duping -s"
+        action: ""
+        lore:
+          - '&fBan Duration: &ePermanent'
+          - ' '
+          - '&7Severe Exploitations/Duping'
+          - '&fe.g. : Obtaining illegal items and exploiting them/severe lag machines'
+          - ' '
+      LightOffenceBanItem:
+        name: "&a&lLight Offences"
+        material: "REDSTONE"
+        amount: 1
+        durability: 0
+        slot: 21
+        message:
+          enabled: false
+          text: "&eHello &b{player}!"
+        command:
+          enabled: true
+          #Put command without /
+          execute:
+            - "ban {player} 1d Team Griefing/Trolling(Gameplay)/Map Exploiting -s"
+        action: ""
+        lore:
+          - '&fBan Duration: &e1 Hour'
+          - ' '
+          - '&7Team Griefing'
+          - '&fIntentionally killing your team'
+          - ' '
+          - '&7Trolling (Gameplay)'
+          - '&fUsing abilities to trap players in spawn'
+          - ' '
+          - '&7Map Exploiting'
+          - '&fAbusing an exploit in a certaing to gain an advantage'
+          - ' '
+      LightClientBanItem:
+        name: "&a&lLight Clients"
+        material: "INK_SACK"
+        amount: 1
+        durability: 0
+        slot: 23
+        message:
+          enabled: false
+          text: "&eHello &b{player}!"
+        command:
+          enabled: true
+          #Put command without /
+          execute:
+            - "ban {player} 1w Damage Indicators/Player Radar -s"
+        action: ""
+        lore:
+          - '&fBan Duration: &e1 Week'
+          - ' '
+          - '&7Examples'
+          - '&fDamage Indicators'
+          - '&fPlayer Radar'
+          - ' '
+      MediumClientBanItem:
+        name: "&a&lMedium Clients"
+        material: "INK_SACK"
+        amount: 1
+        durability: 0
+        slot: 32
+        message:
+          enabled: false
+          text: "&eHello &b{player}!"
+        command:
+          enabled: true
+          #Put command without /
+          execute:
+            - "ban {player} 3m Forcefield/Speed Hack/Reach Hack/Other Hack (First Offense) -s"
+        action: ""
+        lore:
+          - '&fBan Duration: &e3 Months'
+          - ' '
+          - '&7Examples'
+          - '&fForcefield'
+          - '&fSpeed Hack'
+          - '&fReach Hack'
+          - '&fOther Hack'
+          - '&cFirst Offense Only!'
+          - ' '
+      MajorClientBanItem:
+        name: "&a&lMajor Clients"
+        material: "INK_SACK"
+        amount: 1
+        durability: 0
+        slot: 41
+        message:
+          enabled: false
+          text: "&eHello &b{player}!"
+        command:
+          enabled: true
+          #Put command without /
+          execute:
+            - "ban {player} 6m Forcefield/Speed Hack/Reach Hack/Fly Hack/Other Hack (Second Offence) -s"
+        action: ""
+        lore:
+          - '&fBan Duration: &e6 Months'
+          - ' '
+          - '&7Examples'
+          - '&fForcefield'
+          - '&fSpeed Hack'
+          - '&fReach Hack'
+          - '&fFly Hack'
+          - '&fOther Hack'
+          - '&cAlso for second offenders!'
+          - ' '
+      IPMuteItem:
+        name: "&a&lIP Mute"
+        material: "TNT"
+        amount: 1
+        durability: 0
+        slot: 7
+        message:
+          enabled: false
+          text: "&eHello &b{player}!"
+        command:
+          enabled: true
+          #Put command without /
+          execute:
+            - "ipmute {player} IPMUTE -s"
+        action: ""
+        lore:
+          - ' '
+          - '&fMute Duration: &eForever'
+          - '&cIP MUTE'
+          - ' '
+      IPBanItem:
+        name: "&a&lIP BAN"
+        amount: 1
+        material: "TNT"
+        durability: 0
+        slot: 7
+        message:
+          enabled: false
+          text: "&eHello &b{player}!"
+        command:
+          enabled: true
+          #Put command without /
+          execute:
+            - "ipban {player} IPBAN -s"
+        action: ""
+        lore:
+          - ' '
+          - '&fBan Duration: &eForever'
+          - '&cIP BAN'
+          - ' '
