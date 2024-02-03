@@ -36,11 +36,10 @@ public class ConfigItem {
     private XMaterial material;
     private int durability, slot, amount, customModelData;
     private List<String> lore;
-    private boolean commandEnabled, closeMenu, headDataBase, customData;
+    private boolean commandEnabled, closeMenu, headDatabase, skulls, customData;
     private boolean glow = false;
     private String message;
     private boolean messageEnabled;
-    private boolean skulls;
 
     public ConfigItem(ConfigFile configuration, String path) {
         this.configuration = configuration;
@@ -54,11 +53,10 @@ public class ConfigItem {
         this.name = this.configuration.getString(this.path + ".name");
         this.material = Utilities.getMaterial(this.configuration.getString(this.path + ".material"));
         this.durability = this.configuration.getInt(this.path + ".durability");
-
         if (this.configuration.contains(this.path + ".head-database")) {
-            this.headDataBase = this.configuration.getBoolean(this.path + ".head-database", false);
+            this.headDatabase = this.configuration.getBoolean(this.path + ".head-database", false);
         } else {
-            this.headDataBase = false;
+            this.headDatabase = false;
         }
         if (this.configuration.contains(this.path + ".skulls")) {
             this.skulls = this.configuration.getBoolean(this.path + ".skulls", false);
@@ -70,15 +68,14 @@ public class ConfigItem {
         } else {
             this.customData = false;
         }
-
         this.skullOwner = this.configuration.getString(this.path + ".skullOwner");
         this.amount = this.configuration.getInt(this.path + ".amount");
         this.lore = this.configuration.getStringList(this.path + ".lore");
-        this.slot = this.configuration.getInt(this.path + ".slot") -1;
+        this.slot = this.configuration.getInt(this.path + ".slot") - 1;
         this.action = this.configuration.getString(this.path + ".action");
         this.glow = this.configuration.getBoolean(this.path + ".glow");
         this.command = this.configuration.getStringList(this.path + ".command.execute");
-        this.commandEnabled = this.configuration.getBoolean(this.path + ".comma.d.enabled");
+        this.commandEnabled = this.configuration.getBoolean(this.path + ".command.enabled");
         this.message = this.configuration.getString(this.path + ".message.text");
         this.messageEnabled = this.configuration.getBoolean(this.path + ".message.enabled");
         this.customModelData = this.configuration.getInt(this.path + ".customModelData");
@@ -88,11 +85,10 @@ public class ConfigItem {
         } else {
             this.closeMenu = true;
         }
-
     }
 
     public ItemStack toItemStack() {
-        if (headDataBase) {
+        if (headDatabase) {
             HeadDatabaseAPI api = new HeadDatabaseAPI();
             ItemBuilder item = new ItemBuilder(api.getItemHead(this.skullOwner));
             if (glow) {
@@ -105,7 +101,6 @@ public class ConfigItem {
                     item.toItemStack().setItemMeta(itemMeta);
                 }
             }
-
             item.setName(this.name);
             item.setLore(this.lore);
             return item.toItemStack();
@@ -125,43 +120,35 @@ public class ConfigItem {
             item.setName(this.name);
             item.setLore(this.lore);
             return item.toItemStack();
-
-    } else if (customData) {
-        ItemBuilder item = new ItemBuilder(this.material.parseMaterial(), amount);
-        if (VersionCheck.isOnePointFourteenPlus()) {
-            item.setCustomModelData(this.customModelData);
-        } else {
-            Utilities.log("&cAn error occurred when trying to set custom model data. Make sure your only using custom model data when on 1.14+.");
-        }
-        item.setName(this.name);
-        item.setLore(this.lore);
-        item.setDurability(this.durability);
-        item.setSkullOwner(this.skullOwner);
-        return item.toItemStack();
-    } else {
-        ItemBuilder item = new ItemBuilder(this.material.parseMaterial());
-        if (glow) {
-            if (Bukkit.getVersion().contains("1.7")) {
-                item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
+        } else if (customData) {
+            ItemBuilder item = new ItemBuilder(this.material.parseMaterial(), amount);
+            if (VersionCheck.isOnePointFourteenPlus()) {
+                item.setCustomModelData(this.customModelData);
             } else {
-                item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
-                ItemMeta itemMeta = item.toItemStack().getItemMeta();
-                itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-                item.toItemStack().setItemMeta(itemMeta);
+                Utilities.log("&cAn error occurred when trying to set custom model data. Make sure your only using custom model data when on 1.14+.");
             }
+            item.setName(this.name);
+            item.setLore(this.lore);
+            item.setDurability(this.durability);
+            item.setSkullOwner(this.skullOwner);
+            return item.toItemStack();
+        } else {
+            ItemBuilder item = new ItemBuilder(this.material.parseMaterial());
+            if (glow) {
+                if (Bukkit.getVersion().contains("1.7")) {
+                    item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
+                } else {
+                    item.addEnchant(Enchantment.ARROW_DAMAGE, 1);
+                    ItemMeta itemMeta = item.toItemStack().getItemMeta();
+                    itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+                    item.toItemStack().setItemMeta(itemMeta);
+                }
+            }
+            item.setName(this.name);
+            item.setLore(this.lore);
+            item.setDurability(this.durability);
+            item.setSkullOwner(this.skullOwner);
+            return item.toItemStack();
         }
-        item.setName(this.name);
-        item.setLore(this.lore);
-        item.setDurability(this.durability);
-        item.setSkullOwner(this.skullOwner);
-        return item.toItemStack();
-       }
-    }
-
-    public String getName() {
-        if (name == null) {
-            return "";
-        }
-        return name;
     }
 }

@@ -63,6 +63,11 @@ public class CoreHandler extends Manager {
     }
 
     public String translate(String source) {
+
+        if (source == null) {
+            return "";
+        }
+
         source = source.replace("|", "\u2503");
         return Color.translate(source);
     }

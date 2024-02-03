@@ -1,6 +1,6 @@
 package org.npn.punishmentgui.language;
 
-import jdk.javadoc.internal.doclets.toolkit.taglets.snippet.Replace;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.npn.punishmentgui.PunishmentGUI;

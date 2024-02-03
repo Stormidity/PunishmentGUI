@@ -18,7 +18,6 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public abstract class MenuMain {
-
     public PunishmentGUI plugin = PunishmentGUI.getInstance();
 
     @Getter
@@ -89,13 +88,12 @@ public abstract class MenuMain {
         }
 
 
-
         Inventory temporaryInventory = Bukkit.createInventory(player, inventory.getSize(), title);
 
         this.slots.forEach(slot -> {
             temporaryInventory.setItem(slot.getSlot(), slot.getItem(player));
 
-            if(slot.getSlots() != null) {
+            if (slot.getSlots() != null) {
                 Arrays.stream(slot.getSlots()).forEach(extra -> {
                     temporaryInventory.setItem(extra, slot.getItem(player));
                 });
@@ -123,7 +121,7 @@ public abstract class MenuMain {
         }
         for (Slot slot : slots) {
             if (slot.getSlots() != null) {
-                for(int i = 0; i < slot.getSlots().length; i++) {
+                for (int i = 0; i < slot.getSlots().length; i++) {
                     if (slot.getSlots()[i] > highest) {
                         highest = slot.getSlots()[i];
                     }
@@ -136,7 +134,7 @@ public abstract class MenuMain {
     public boolean hasSlot(int value) {
         return this.slots.stream()
                 .filter(slot -> slot.getSlot() == value || slot.getSlots() != null
-                       && Arrays.stream(slot.getSlots()).anyMatch(i -> i == value))
+                        && Arrays.stream(slot.getSlots()).anyMatch(i -> i == value))
                 .findFirst().orElse(null) != null;
     }
 

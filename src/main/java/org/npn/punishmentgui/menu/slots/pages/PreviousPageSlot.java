@@ -50,6 +50,8 @@ public class PreviousPageSlot extends Slot {
     public int getSlot() {
         return 0;
     }
+
+    @Override
     public int[] getSlots() {
         return new int[]{36};
     }
