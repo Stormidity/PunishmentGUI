@@ -35,8 +35,8 @@ public class InventoryListener extends Manager implements Listener {
         slot.onClick(player, event.getSlot(), event.getClick());
     }
 
-
-    @EventHandler(priority = EventPriority.HIGHEST)    public void handleInventoryClose(InventoryCloseEvent event) {
+    @EventHandler(priority = EventPriority.HIGHEST)
+    public void handleInventoryClose(InventoryCloseEvent event) {
         Player player = (Player) event.getPlayer();
 
         MenuMain menu = plugin.getMenuManager().getOpenedMenus().get(player.getUniqueId());

@@ -1,19 +1,20 @@
 package org.npn.punishmentgui.commands;
 
-import co.aikar.commands.BaseCommand;
+import co.aikar.commands.*;
 import co.aikar.commands.annotation.*;
-import org.npn.punishmentgui.PunishmentGUI;
+import org.npn.punishmentgui.*;
 import org.npn.punishmentgui.language.Language;
-import org.npn.punishmentgui.menu.handler.CustomMenu;
+import org.npn.punishmentgui.menu.handler.*;
 import org.npn.punishmentgui.utils.Tasks;
 import org.npn.punishmentgui.utils.Utilities;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
+import org.bukkit.plugin.java.*;
 
 
 @CommandAlias("punish|punishment")
 @CommandPermission("punish.use")
-@Description("Opens the punish menu")
+@Description("Opens the punish menu for specified player.")
 @Conditions("noconsole")
 public class PunishmentCommand extends BaseCommand {
 
@@ -24,7 +25,6 @@ public class PunishmentCommand extends BaseCommand {
     @CommandCompletion("@players")
     public void onDefault(CommandSender sender, String[] args) {
         Player player = (Player) sender;
-
         if (args.length == 0 || args.length > 2) {
             player.sendMessage(plugin.getPlaceholderAPI().translate(player, Language.PUNISH_USAGE.toString()));
             return;
@@ -39,7 +39,7 @@ public class PunishmentCommand extends BaseCommand {
         String menu = plugin.getSettingsFile().getString("Command").replace("{openmenu:", "").replace("}", "").toLowerCase();
         CustomMenu customMenu = plugin.getCoreHandler().getCustomMenuData().get(menu);
         if (menu != null) {
-            Tasks.run (plugin, () -> {
+            Tasks.run(plugin, () -> {
                 player.closeInventory();
                 customMenu.getMenu().open(player);
                 return;

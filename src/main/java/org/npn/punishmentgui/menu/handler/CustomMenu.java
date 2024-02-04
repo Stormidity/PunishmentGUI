@@ -30,23 +30,27 @@ public class CustomMenu {
 
     public MenuMain getMenu() {
         return new MenuMain() {
+
             {
                 setUpdateInTask(true);
             }
+
             @Override
             public List<Slot> getSlots(Player player) {
                 List<Slot> slots = new ArrayList<>();
 
                 items.forEach(configItem -> slots.add(new Slot() {
+
                     @Override
                     public ItemStack getItem(Player player) {
                         List<String> lore = configItem.getLore();
                         List<String> lore_new = new ArrayList<>();
                         String name = configItem.getName();
 
-                        configItem.setName(String.valueOf(plugin.getCoreHandler().translate(player, configItem.getName())
+
+                        configItem.setName(String.valueOf(plugin.getCoreHandler().translate(player, configItem.getName()
                                 .replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))
-                                .replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))));
+                                .replace("{player}", plugin.getBannedManager().get(player.getUniqueId())))));
                         for (String s : lore) {
                             lore_new.add(plugin.getCoreHandler().translate(player, s.replace("{target}", plugin.getBannedManager().get(player.getUniqueId()))
                                     .replace("{player}", plugin.getBannedManager().get(player.getUniqueId()))));
@@ -67,7 +71,7 @@ public class CustomMenu {
 
                     @Override
                     public void onClick(Player player, int slot, ClickType clickType) {
-                        if(configItem.isCloseMenu()) {
+                        if (configItem.isCloseMenu()) {
                             Tasks.run(plugin, player::closeInventory);
                         }
                         if (configItem.getAction().toLowerCase().startsWith("{openmenu:") && configItem.getAction().toLowerCase().endsWith("}")) {
@@ -128,7 +132,8 @@ public class CustomMenu {
                     }
                 }
 
-                if (!Slot.hasSlot(slots, size = 1)) {
+
+                if (!Slot.hasSlot(slots, size - 1)) {
                     slots.add(new Slot() {
                         @Override
                         public ItemStack getItem(Player player) {
@@ -137,14 +142,13 @@ public class CustomMenu {
 
                         @Override
                         public int getSlot() {
-                            return size -1;
+                            return size - 1;
                         }
                     });
                 }
+
                 return slots;
-
             }
-
 
             @Override
             public String getName(Player player) {
@@ -158,3 +162,5 @@ public class CustomMenu {
         };
     }
 }
+
+

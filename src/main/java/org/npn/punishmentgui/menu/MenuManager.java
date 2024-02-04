@@ -1,14 +1,14 @@
 package org.npn.punishmentgui.menu;
 
 
-import lombok.Getter;
-import org.npn.punishmentgui.PunishmentGUI;
-import org.npn.punishmentgui.menu.menu.MenuMain;
-import org.npn.punishmentgui.utils.Manager;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import lombok.Getter;
+import org.npn.punishmentgui.*;
+import org.npn.punishmentgui.menu.menu.*;
+import org.npn.punishmentgui.utils.*;
+
+import java.util.*;
+
 
 @Getter
 public class MenuManager extends Manager {
@@ -19,3 +19,4 @@ public class MenuManager extends Manager {
         super(plugin);
     }
 }
+

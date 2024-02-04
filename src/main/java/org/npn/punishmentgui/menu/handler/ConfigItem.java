@@ -9,15 +9,14 @@ import me.arcaniax.hdb.api.HeadDatabaseAPI;
 import org.bukkit.Bukkit;
 import ca.tweetzy.skulls.impl.Skull;
 import org.bukkit.enchantments.Enchantment;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.npn.punishmentgui.utils.*;
 import org.npn.punishmentgui.PunishmentGUI;
 
-import java.util.List;
-
+import java.util.*;
 
 
 @Getter
@@ -152,3 +151,4 @@ public class ConfigItem {
         }
     }
 }
+

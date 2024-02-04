@@ -1,21 +1,23 @@
 package org.npn.punishmentgui.menu.handler;
 
+
 import lombok.Getter;
 import lombok.Setter;
 import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.entity.Player;
 import org.npn.punishmentgui.PunishmentGUI;
-import org.npn.punishmentgui.utils.Color;
-import org.npn.punishmentgui.utils.Manager;
-import org.npn.punishmentgui.utils.Utilities;
+import org.npn.punishmentgui.utils.*;
 
-import org.bukkit.configuration.ConfigurationSection;
+
+import org.bukkit.configuration.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.function.*;
+import java.util.stream.*;
+
 
 @Getter
 @Setter
@@ -23,12 +25,14 @@ public class CoreHandler extends Manager {
 
     private Map<String, CustomMenu> customMenuData = new HashMap<>();
 
+
     public CoreHandler(PunishmentGUI plugin) {
         super(plugin);
     }
 
     public void setupCustomMenuData() {
         this.customMenuData.clear();
+
         ConfigurationSection section = this.plugin.getSettingsFile().getConfigurationSection("menus");
 
         if (section == null) return;
@@ -39,10 +43,10 @@ public class CoreHandler extends Manager {
             ConfigurationSection itemSection = this.plugin.getSettingsFile().getConfigurationSection("menus." + key + ".items");
 
             if (itemSection != null) {
-                itemSection.getKeys(false).forEach(item -> items.add(new ConfigItem(this.plugin.getSettingsFile(), "menus." + key + ".items" + item)));
-
+                itemSection.getKeys(false).forEach(item -> items.add(new ConfigItem(this.plugin.getSettingsFile(), "menus." + key + ".items." + item)));
             }
-            String name = this.plugin.getSettingsFile().getString("menus." + key + ".name", "");
+
+            String name = this.plugin.getSettingsFile().getString("menus." + key + ".name", "").toLowerCase();
 
             boolean fill = this.plugin.getSettingsFile().getBoolean("menus." + key + ".fill-menu.enabled", false);
             ConfigurationSection fillSection = this.plugin.getSettingsFile().getConfigurationSection("menus." + key + ".fill-menu");
@@ -63,11 +67,6 @@ public class CoreHandler extends Manager {
     }
 
     public String translate(String source) {
-
-        if (source == null) {
-            return "";
-        }
-
         source = source.replace("|", "\u2503");
         return Color.translate(source);
     }

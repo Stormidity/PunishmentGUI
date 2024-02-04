@@ -41,7 +41,7 @@ public class PreviousPageSlot extends Slot {
 
         } else {
             player.sendMessage(Color.translate("&bYou're on the first page of the menu!"));
-
+            return;
         }
         this.menuSwitch.changePage(player, -1);
     }
